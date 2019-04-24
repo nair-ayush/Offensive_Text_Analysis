@@ -46,7 +46,7 @@ Various machine learning approaches have been made in order to tackle the proble
 
 Although lexical features perform well in detecting offensive entities, without considering the syntactical structure of the whole sentence, they fail to distinguish sentences’ offensiveness which contains the same words but in different orders. In the same study, the natural language process parser, proposed by Stanford Natural Language Processing Group, was used to capture the grammatical dependencies within a sentence.
 
-![ParallelDots implementation]()
+![ParallelDots implementation](Screenshots/ParallelDots.png)
 
 Companies employ various techniques which are undisclosed as of now to filter messages and comments effectively. ParallelDots already has an API to detect the level of abusiveness in a comment which it licences out to companies. It’s not perfect as you can clearly see in the above example. The input text is offensive at the very least and it classifies it as non-abusive with an 84% probability.
 
@@ -60,15 +60,15 @@ We will attempt to tackle this classification problem using the Keras LSTM. The 
 
 The next problem to tackle is the length of the comments. Some comments are quite long while some are short. We need to feed the LSTM an input of uniform length by normalising the length of all comments to fixed a length that is neither too short or long and can vividly showcase all the features it portrays. Let’s explore the data.
 
-![Training dataset sample]()
+![Training dataset sample](Screenshots/Dataset.png)
 
 The training data has around 150k rows and 8 columns. The dataset is pretty clean with no null values. After converting the texts into their token representations, we can plot the length of the comments.
 
-![graph]()
+![graph](Screenshots/Graph.png)
 
 Most of the sentences are 30+. We could set the optimal length to 50 but to be on the safe side and capture all the features we go a little paranoid and set it to 200. Later we can find the perfect number that is required to match the expectations of accuracy. The architecture of the model is as follows:
 
-![Model architecture]()
+![Model architecture](Screenshots/Model.png)
 
 The inputs i.e. the tokenized representations are then passed to the embedding layer whose output is then passed onto the LSTM layer. LSTM’s or RNN’s work by recursively feeding the output of a previous network into the input of the current network, and we get the final output after ‘x’ number of recursions. But in this use case, we take the unrolled, or the outputs of each recursion as the result to pass to the next layer.
 
