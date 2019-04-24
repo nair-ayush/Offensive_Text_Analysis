@@ -1,15 +1,19 @@
 # Offensive_Text_Analysis
+
 A deep learning implementation for offensive text analysis using Keras. Given offensive text, the aim is to classify the text into several labels, 6 as of now based on the severity of the insult.
 
 A single epoch takes 15-16 minutes to train. So you sure can test it out.
 
 ## Table of Contents
+
 1. [Abstract](#abstract)
 2. [Problem Statement](#probelem-statement)
 3. [Related Work](#related-work)
 4. [Approach](#approach)
 5. [Implementation and Results](#implementation-and-results)
 6. [Conclusion and Future Work](#conclusion-and-future-work)
+7. [Dependencies](#dependencies)
+8. [Contributing](#contributing)
 
 ## Abstract
 
@@ -24,12 +28,13 @@ As such they aim to take action prior and maybe ban such vagrants from their web
 The aim of this project is to identify the level of threat/danger that a particular individual had poses through written communication through the form of the comments, articles posts. These “texts” need not be in any particular format just that they follow the lexicon of English.
 
 The prior assumption is that the texts in question currently are offensive and the purpose is to classify/label them into categories listed below:
-* Severe_Toxic
-* Toxic
-* Obscene
-* Threat
-* Insult
-* Identity_Hate
+
+-   Severe_Toxic
+-   Toxic
+-   Obscene
+-   Threat
+-   Insult
+-   Identity_Hate
 
 The above labels should classify all offensive text appropriately and cover all areas of obscenity and vulgarity of the English lexicon with all its semantics and inferences.
 
@@ -48,6 +53,7 @@ Companies employ various techniques which are undisclosed as of now to filter me
 ## Approach
 
 We will attempt to tackle this classification problem using the Keras LSTM. The approach taken is to feed the comments into the LSTM as part of the neural network but the data can’t be fed as is.
+
 1. Tokenization - the sentence is broken down into words. For eg, "I love cats and love dogs" will become ["I","love","cats","and","dogs"]
 2. Indexing - the words are put in a dictionary-like structure and given an index each. For eg, {1:"I",2:"love",3:"cats",4:"and",5:"dogs"}
 3. Index Representation- the sequence of words in the comments is represented in the form of index, and feed this chain of indexes into our LSTM. For eg, [1,2,3,4,2,5]
@@ -79,9 +85,9 @@ During compilation, the Adam optimiser is used for it is the most robust and com
 Finally to test the model we run the model on the data with a batch size of 32 i.e. we send 32 comments/texts at a time for a total of 2 epochs. We split the data to a 1:9 ratio for validation testing which means around 140k rows are for training and around 15k rows for validation. For the above parameters we get the following results for each epoch:
 
 | Epoch | Training loss | Training acc. | Validation Loss | Validation Acc. |
-|:-----:|:-------------:|:-------------:|:---------------:|:---------------:|
-|  1st  |    0.0707     |     0.9777    |     0.0489      |     0.9818      |
-|  2nd  |    0.0651     |     0.9812    |     0.0409      |     0.9882      |
+| :---: | :-----------: | :-----------: | :-------------: | :-------------: |
+|  1st  |    0.0707     |    0.9777     |     0.0489      |     0.9818      |
+|  2nd  |    0.0651     |    0.9812     |     0.0409      |     0.9882      |
 
 The above results are pretty good for the initial attempt and can obviously be improved upon which we look at in the next section.
 
@@ -96,12 +102,15 @@ Nowadays, the trend is to use emoticons and acronyms to substitute their emotion
 The model itself is in its preliminary stage. Hyperparameter tuning of the model’s parameters will exponentially improve the output/accuracy of the model by preventing overfitting. The learning rate is at its default value whose change might affect the model’s output. The number of epochs can be increased to increase the accuracy along with the increase in batch size.
 
 Upon increment of the number of epochs, it might be possible the validation loss starts to degrade then we can introduce early stopping to avoid that. Experimenting with existing architecture and trying out other pre-existing models can help by leaps and bounds. The system so far is pretty accurate but by no means perfect and work still needs to be done to make it industry standard so that it can be deployed on websites and other places.
+
 ## Dependencies
-* Keras v2.2.4
-* Numpy v1.16.2
-* Pandas v0.24.2
+
+-   Keras v2.2.4
+-   Numpy v1.16.2
+-   Pandas v0.24.2
 
 ## Contributing
+
 Please fork this repository and check out to a different branch to start working.
 
 Please note that this project is just my trial run into the world of Deep Learning and most of it has been taken from kernels on Kaggle. If you have ideas to improve this model or maybe feel that there is something wrong in this report then please feel free to let me know and criticise my work.
